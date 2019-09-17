@@ -13,24 +13,13 @@ enum AppError: Error {
     case error
 }
 
-struct CryptManager {
+class CryptManager {
     
     // MARK: - Property
     
-    private static var encryptionKey: SymmetricKey!
+    static let shared = CryptManager()
+    private var encryptionKey = SymmetricKey(size: .bits256)
     private let keyName = "encryptionKey"
-    
-    // MARK: - Initializer
-    
-    init() {
-        if let key = UserDefaults.standard.value(forKey: keyName) as? SymmetricKey {
-            CryptManager.encryptionKey = key
-        } else {
-            let key = SymmetricKey(size: .bits256)
-            CryptManager.encryptionKey = key
-            UserDefaults.standard.setValue(key, forKey: keyName)
-        }
-    }
     
     // MARK: - Public function
     
@@ -38,7 +27,7 @@ struct CryptManager {
     /// - Parameter path: 書き込み先のパス
     /// - Parameter data: 暗号化して書き込むデータ
     @discardableResult
-    static func writeEncryptedData(to path: String, data: Data) -> Bool {
+    func writeEncryptedData(to path: String, data: Data) -> Bool {
         do {
             let data = try encrypt(data: data)
             FileManager.default.createFile(atPath: path, contents: data, attributes: [:])
@@ -52,7 +41,7 @@ struct CryptManager {
     /// - Parameter path: 書き込み先のパス
     /// - Parameter data: 復号して書き込むデータ
     @discardableResult
-    static func writeDecryptedData(to path: String, data: Data) -> Bool {
+    func writeDecryptedData(to path: String, data: Data) -> Bool {
         do {
             let data = try decrypt(data: data)
             FileManager.default.createFile(atPath: path, contents: data, attributes: [:])
@@ -66,7 +55,7 @@ struct CryptManager {
     
     /// 暗号化
     /// - Parameter data: 暗号化するデータ
-    private static func encrypt(data: Data) throws -> Data {
+    private func encrypt(data: Data) throws -> Data {
         do {
             let sealedBox =  try AES.GCM.seal(data, using: encryptionKey)
             guard let data = sealedBox.combined else {
@@ -80,7 +69,7 @@ struct CryptManager {
     
     /// 復号
     /// - Parameter data: 復号するデータ
-    private static func decrypt(data: Data) throws -> Data {
+    private func decrypt(data: Data) throws -> Data {
         do {
             let sealedBox = try AES.GCM.SealedBox(combined: data)
             return try AES.GCM.open(sealedBox, using: encryptionKey)
@@ -88,6 +77,4 @@ struct CryptManager {
             throw AppError.error
         }
     }
-    
-    
 }
