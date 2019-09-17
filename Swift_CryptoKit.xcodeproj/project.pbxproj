@@ -15,6 +15,7 @@
 		567CA05E23313611004E62CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 567CA05C23313611004E62CA /* LaunchScreen.storyboard */; };
 		567CA06923313612004E62CA /* Swift_CryptoKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567CA06823313612004E62CA /* Swift_CryptoKitTests.swift */; };
 		567CA07423313612004E62CA /* Swift_CryptoKitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567CA07323313612004E62CA /* Swift_CryptoKitUITests.swift */; };
+		567CA08823313A3D004E62CA /* CryptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567CA08723313A3D004E62CA /* CryptManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		567CA06F23313612004E62CA /* Swift_CryptoKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Swift_CryptoKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		567CA07323313612004E62CA /* Swift_CryptoKitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift_CryptoKitUITests.swift; sourceTree = "<group>"; };
 		567CA07523313612004E62CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		567CA08723313A3D004E62CA /* CryptManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +101,8 @@
 		567CA05023313610004E62CA /* Swift_CryptoKit */ = {
 			isa = PBXGroup;
 			children = (
-				567CA08223313934004E62CA /* ViewController */,
+				567CA08623313A12004E62CA /* Data */,
+				567CA08523313A08004E62CA /* UI */,
 				567CA08123313921004E62CA /* Other */,
 			);
 			path = Swift_CryptoKit;
@@ -158,6 +161,22 @@
 				567CA05C23313611004E62CA /* LaunchScreen.storyboard */,
 			);
 			path = Launch;
+			sourceTree = "<group>";
+		};
+		567CA08523313A08004E62CA /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				567CA08223313934004E62CA /* ViewController */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		567CA08623313A12004E62CA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				567CA08723313A3D004E62CA /* CryptManager.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +312,7 @@
 			files = (
 				567CA05623313610004E62CA /* MainViewController.swift in Sources */,
 				567CA05223313610004E62CA /* AppDelegate.swift in Sources */,
+				567CA08823313A3D004E62CA /* CryptManager.swift in Sources */,
 				567CA05423313610004E62CA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
