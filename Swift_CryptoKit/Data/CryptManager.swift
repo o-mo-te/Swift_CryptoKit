@@ -17,11 +17,19 @@ struct CryptManager {
     
     // MARK: - Property
     
-    private static var key: SymmetricKey = SymmetricKey(size: .bits256)
+    private static var encryptionKey: SymmetricKey!
+    private let keyName = "encryptionKey"
     
     // MARK: - Initializer
     
     init() {
+        if let key = UserDefaults.standard.value(forKey: keyName) as? SymmetricKey {
+            CryptManager.encryptionKey = key
+        } else {
+            let key = SymmetricKey(size: .bits256)
+            CryptManager.encryptionKey = key
+            UserDefaults.standard.setValue(key, forKey: keyName)
+        }
     }
     
     // MARK: - Public function
@@ -60,7 +68,7 @@ struct CryptManager {
     /// - Parameter data: 暗号化するデータ
     private static func encrypt(data: Data) throws -> Data {
         do {
-            let sealedBox =  try AES.GCM.seal(data, using: key)
+            let sealedBox =  try AES.GCM.seal(data, using: encryptionKey)
             guard let data = sealedBox.combined else {
                 throw AppError.error
             }
@@ -75,7 +83,7 @@ struct CryptManager {
     private static func decrypt(data: Data) throws -> Data {
         do {
             let sealedBox = try AES.GCM.SealedBox(combined: data)
-            return try AES.GCM.open(sealedBox, using: key)
+            return try AES.GCM.open(sealedBox, using: encryptionKey)
         } catch _ {
             throw AppError.error
         }
