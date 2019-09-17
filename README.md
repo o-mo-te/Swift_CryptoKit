@@ -1,1 +1,1 @@
-# Swift_CryptKit
+# Swift_CryptoKit
