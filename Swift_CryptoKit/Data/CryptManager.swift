@@ -2,9 +2,6 @@
 //  CryptManager.swift
 //  Swift_CryptoKit
 //
-//  Created by hidetomo on 2019/09/18.
-//  Copyright © 2019 Hidetomo Masuda. All rights reserved.
-//
 
 import Foundation
 import CryptoKit
@@ -13,7 +10,7 @@ enum AppError: Error {
     case error
 }
 
-class CryptManager {
+final class CryptManager {
     
     // MARK: - Property
     
