@@ -10,13 +10,48 @@ enum AppError: Error {
     case error
 }
 
+enum KeyType {
+    case encryptionKey
+    
+    var name: String {
+        switch self {
+        case .encryptionKey:
+            return "encryptionKey"
+        }
+    }
+}
+
 final class CryptManager {
     
     // MARK: - Property
     
     static let shared = CryptManager()
-    private var encryptionKey = SymmetricKey(size: .bits256)
-    private let keyName = "encryptionKey"
+    private var encryptionKey: SymmetricKey!
+    
+    // MARK: - private function
+    
+    private init() {
+        
+        defer {
+            if encryptionKey == nil {
+                fatalError()
+            }
+        }
+        
+        // If userDefaults has emcryptionKey, get value and set to property named "encryptionKey"
+        if
+            let value = UserDefaults.standard.string(forKey: KeyType.encryptionKey.name),
+            let key = SymmetricKey(base64EncodedString: value) {
+            encryptionKey = key
+            return
+        }
+        
+        // If userDefaults doesn't have encryptionKey, create value and set to userDefaults
+        let key = SymmetricKey(size: .bits256)
+        encryptionKey = key
+        let value = encryptionKey.serialize()
+        UserDefaults.standard.set(value, forKey: KeyType.encryptionKey.name)
+    }
     
     // MARK: - Public function
     
