@@ -89,7 +89,7 @@ final class CryptManager {
     /// - Parameter data: 暗号化するデータ
     private func encrypt(data: Data) throws -> Data {
         do {
-            let sealedBox =  try AES.GCM.seal(data, using: encryptionKey)
+            let sealedBox = try AES.GCM.seal(data, using: encryptionKey)
             guard let data = sealedBox.combined else {
                 throw AppError.error
             }
