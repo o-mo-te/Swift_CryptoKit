@@ -1,5 +1,5 @@
 //
-//  CryptManager.swift
+//  CryptoManager.swift
 //  Swift_CryptoKit
 //
 
@@ -21,35 +21,35 @@ enum KeyType {
     }
 }
 
-final class CryptManager {
+final class CryptoManager {
     
     // MARK: - Property
     
-    static let shared = CryptManager()
-    private var encryptionKey: SymmetricKey!
+    static let shared = CryptoManager()
+    private var symmetricKey: SymmetricKey!
     
     // MARK: - private function
     
     private init() {
         
         defer {
-            if encryptionKey == nil {
+            if symmetricKey == nil {
                 fatalError()
             }
         }
         
-        // If userDefaults has emcryptionKey, get value and set to property named "encryptionKey"
+        // If userDefaults has symmetricKey, get value and set to property named "symmetricKey"
         if
             let value = UserDefaults.standard.string(forKey: KeyType.encryptionKey.name),
             let key = SymmetricKey(base64EncodedString: value) {
-            encryptionKey = key
+            symmetricKey = key
             return
         }
         
-        // If userDefaults doesn't have encryptionKey, create value and set to userDefaults
+        // If userDefaults doesn't have symmetricKey, create value and set to userDefaults
         let key = SymmetricKey(size: .bits256)
-        encryptionKey = key
-        let value = encryptionKey.serialize()
+        symmetricKey = key
+        let value = symmetricKey.serialize()
         UserDefaults.standard.set(value, forKey: KeyType.encryptionKey.name)
     }
     
@@ -89,7 +89,7 @@ final class CryptManager {
     /// - Parameter data: 暗号化するデータ
     private func encrypt(data: Data) throws -> Data {
         do {
-            let sealedBox = try AES.GCM.seal(data, using: encryptionKey)
+            let sealedBox = try AES.GCM.seal(data, using: symmetricKey)
             guard let data = sealedBox.combined else {
                 throw AppError.error
             }
@@ -104,7 +104,7 @@ final class CryptManager {
     private func decrypt(data: Data) throws -> Data {
         do {
             let sealedBox = try AES.GCM.SealedBox(combined: data)
-            return try AES.GCM.open(sealedBox, using: encryptionKey)
+            return try AES.GCM.open(sealedBox, using: symmetricKey)
         } catch _ {
             throw AppError.error
         }

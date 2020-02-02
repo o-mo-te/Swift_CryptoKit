@@ -52,7 +52,7 @@ private extension MainViewController {
         let path = getFilePath()
         guard
             let data = getPathData(path: path),
-            CryptManager.shared.writeEncryptedData(to: path, data: data) else {
+            CryptoManager.shared.writeEncryptedData(to: path, data: data) else {
                 updateLabelText(result: "Failure!", description: "Failed to write encrypted data.")
                 return
         }
@@ -64,7 +64,7 @@ private extension MainViewController {
         let path = getFilePath()
         guard
             let data = FileManager.default.contents(atPath: path),
-            CryptManager.shared.writeDecryptedData(to: path, data: data)else {
+            CryptoManager.shared.writeDecryptedData(to: path, data: data)else {
                 updateLabelText(result: "Failure!", description: "Failed to write decrypted data.")
                 return
         }
@@ -73,16 +73,16 @@ private extension MainViewController {
     
     /// 書き込むパスを取得
     private func getFilePath() -> String {
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        return "\(documentsPath)/Sample.text"
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        return "\(documentDirectory)/Sample.text"
     }
     
-    // 指定したパスのデータを取得
+    /// 指定したパスのデータを取得
     private func getPathData(path: String) -> Data? {
-        guard let encryptData = FileManager.default.contents(atPath: path) else {
+        guard let data = FileManager.default.contents(atPath: path) else {
             return nil
         }
-        return encryptData
+        return data
     }
     
     /// 表示文言を変更

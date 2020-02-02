@@ -15,7 +15,7 @@
 		567CA05E23313611004E62CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 567CA05C23313611004E62CA /* LaunchScreen.storyboard */; };
 		567CA06923313612004E62CA /* Swift_CryptoKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567CA06823313612004E62CA /* Swift_CryptoKitTests.swift */; };
 		567CA07423313612004E62CA /* Swift_CryptoKitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567CA07323313612004E62CA /* Swift_CryptoKitUITests.swift */; };
-		567CA08823313A3D004E62CA /* CryptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567CA08723313A3D004E62CA /* CryptManager.swift */; };
+		567D395A23E6811700DC2F57 /* CryptoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567D395923E6811700DC2F57 /* CryptoManager.swift */; };
 		56C5B9BC2332626C00BA455C /* SymmetricKey+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5B9BB2332626C00BA455C /* SymmetricKey+Initializer.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,7 +51,7 @@
 		567CA06F23313612004E62CA /* Swift_CryptoKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Swift_CryptoKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		567CA07323313612004E62CA /* Swift_CryptoKitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift_CryptoKitUITests.swift; sourceTree = "<group>"; };
 		567CA07523313612004E62CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		567CA08723313A3D004E62CA /* CryptManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptManager.swift; sourceTree = "<group>"; };
+		567D395923E6811700DC2F57 /* CryptoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoManager.swift; sourceTree = "<group>"; };
 		56C5B9BB2332626C00BA455C /* SymmetricKey+Initializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SymmetricKey+Initializer.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,7 +177,7 @@
 		567CA08623313A12004E62CA /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				567CA08723313A3D004E62CA /* CryptManager.swift */,
+				567D395923E6811700DC2F57 /* CryptoManager.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -323,8 +323,8 @@
 			files = (
 				567CA05623313610004E62CA /* MainViewController.swift in Sources */,
 				567CA05223313610004E62CA /* AppDelegate.swift in Sources */,
+				567D395A23E6811700DC2F57 /* CryptoManager.swift in Sources */,
 				56C5B9BC2332626C00BA455C /* SymmetricKey+Initializer.swift in Sources */,
-				567CA08823313A3D004E62CA /* CryptManager.swift in Sources */,
 				567CA05423313610004E62CA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
